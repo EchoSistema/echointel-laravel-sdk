@@ -1,6 +1,14 @@
 # EchoIntel Laravel SDK
 
+[![Packagist Version](https://img.shields.io/packagist/v/echointel/laravel-sdk)](https://packagist.org/packages/echointel/laravel-sdk)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/echointel/laravel-sdk)](https://packagist.org/packages/echointel/laravel-sdk)
+[![PHP Version](https://img.shields.io/packagist/php-v/echointel/laravel-sdk)](https://packagist.org/packages/echointel/laravel-sdk)
+[![Laravel Version](https://img.shields.io/badge/Laravel-10.x%20|%2011.x%20|%2012.x-red)](https://laravel.com)
+[![License](https://img.shields.io/badge/License-Proprietary-blue)](LICENSE)
+
 A Laravel SDK for the EchoIntel AI API - providing artificial intelligence capabilities for forecasting, customer segmentation, inventory optimization, and more.
+
+**Packagist:** https://packagist.org/packages/echointel/laravel-sdk
 
 ## Requirements
 
