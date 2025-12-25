@@ -14,7 +14,7 @@
         "sdk"
     ],
     "homepage": "https://github.com/EchoSistema/echointel-laravel-sdk",
-    "license": "MIT",
+    "license": "proprietary",
     "type": "library",
     "authors": [
         {
