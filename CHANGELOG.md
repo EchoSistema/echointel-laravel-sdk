@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-02-02
+
+### Breaking Changes
+
+- **Endpoint URLs migrated from `snake_case` to `kebab-case`** to align with API v2.1
+  - Example: `/api/forecast_revenue` → `/api/forecast-revenue`
+  - All endpoint constants in `Endpoints.php` updated accordingly
+  - SDK method names remain unchanged — no application code changes required
+- **Base URL changed to production** (`https://ai.echosistema.live`)
+  - Previously defaulted to `https://ai.echosistema.dev`
+  - SDK now defaults to sandbox mode via `ECHOINTEL_SANDBOX` (default: `true`)
+
+### Added
+
+- **Sandbox mode toggle** via `ECHOINTEL_SANDBOX` environment variable
+  - `true` (default): requests go to `https://ai.echosistema.dev`
+  - `false`: requests go to `https://ai.echosistema.live`
+  - Uses `filter_var` with `FILTER_VALIDATE_BOOLEAN` for reliable string-to-boolean conversion
+- **`sandbox_api_url`** config key (`ECHOINTEL_SANDBOX_API_URL`) for overriding the sandbox URL
+- **`Endpoints::SANDBOX_URL`** constant
+- **Async ML Jobs** — methods for managing asynchronous machine learning jobs
+  - `listJobs(?string $customerApiId, ?string $status, ?int $limit)` — List jobs with filtering
+  - `getJobStatus(string $jobId)` — Poll job status and progress
+  - `getJobResult(string $jobId)` — Retrieve completed job results
+- **Dead Letter Queue (Admin)** — methods for managing failed job messages
+  - `listDlqMessages(?string $queueName, ?int $limit)` — List failed job messages
+  - `retryDlqMessage(string $jobId, ?string $queueName)` — Re-enqueue a failed job
+  - `deleteDlqMessage(string $jobId, ?string $queueName)` — Remove a failed job message
+
+### Changed
+
+- `Endpoints::BASE_URL` updated from `https://ai.echosistema.dev` to `https://ai.echosistema.live`
+- `config('echointel.api_url')` default updated to `https://ai.echosistema.live`
+- `EchoIntelServiceProvider` now resolves `base_url` based on the `sandbox` config flag
+- README rewritten for v2.0.0 with full API reference, migration guide, and sandbox documentation
+
+### Removed
+
+- `sanitizeTextEn()` endpoint removed from API (was never present in the Laravel SDK)
+
 ## [1.0.0] - 2025-12-25
 
 ### Added
@@ -60,5 +100,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Admin**: customers (create, list, get, update, delete)
 - **System**: health
 
-[Unreleased]: https://github.com/EchoSistema/echointel-laravel-sdk/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/EchoSistema/echointel-laravel-sdk/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/EchoSistema/echointel-laravel-sdk/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/EchoSistema/echointel-laravel-sdk/releases/tag/v1.0.0
