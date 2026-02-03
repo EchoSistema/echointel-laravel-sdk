@@ -35,7 +35,7 @@ php artisan vendor:publish --tag=echointel-config
 Add your API credentials to your `.env` file:
 
 ```env
-ECHOINTEL_API_URL=https://ai.echosistema.live
+ECHOINTEL_API_URL=https://ai.echosistema.dev
 ECHOINTEL_CUSTOMER_API_ID=your-customer-api-id
 ECHOINTEL_SECRET=your-secret-key
 ECHOINTEL_TIMEOUT=30
@@ -275,7 +275,7 @@ return [
     | EchoIntel API URL
     |--------------------------------------------------------------------------
     */
-    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.live'),
+    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.dev'),
 
     /*
     |--------------------------------------------------------------------------

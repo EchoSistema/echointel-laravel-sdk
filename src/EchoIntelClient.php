@@ -353,6 +353,55 @@ class EchoIntelClient
     }
 
     // =========================================================================
+    // ASYNC ML JOBS
+    // =========================================================================
+
+    public function listJobs(?string $customerApiId = null, ?string $status = null, ?int $limit = null): array
+    {
+        $params = [];
+        if ($customerApiId !== null) $params[] = "customer_api_id={$customerApiId}";
+        if ($status !== null) $params[] = "status={$status}";
+        if ($limit !== null) $params[] = "limit={$limit}";
+        $query = !empty($params) ? '?' . implode('&', $params) : '';
+        return $this->request('GET', Endpoints::JOBS . $query);
+    }
+
+    public function getJobStatus(string $jobId): array
+    {
+        return $this->request('GET', Endpoints::JOBS . "/{$jobId}/status");
+    }
+
+    public function getJobResult(string $jobId): array
+    {
+        return $this->request('GET', Endpoints::JOBS . "/{$jobId}/result");
+    }
+
+    // =========================================================================
+    // DEAD LETTER QUEUE
+    // =========================================================================
+
+    public function listDlqMessages(?string $queueName = null, ?int $limit = null): array
+    {
+        $params = [];
+        if ($queueName !== null) $params[] = "queue_name={$queueName}";
+        if ($limit !== null) $params[] = "limit={$limit}";
+        $query = !empty($params) ? '?' . implode('&', $params) : '';
+        return $this->requestAdmin('GET', Endpoints::DLQ_MESSAGES . $query);
+    }
+
+    public function retryDlqMessage(string $jobId, ?string $queueName = null): array
+    {
+        $query = $queueName !== null ? "?queue_name={$queueName}" : '';
+        return $this->requestAdmin('POST', Endpoints::DLQ_RETRY . "/{$jobId}{$query}");
+    }
+
+    public function deleteDlqMessage(string $jobId, ?string $queueName = null): array
+    {
+        $query = $queueName !== null ? "?queue_name={$queueName}" : '';
+        return $this->requestAdmin('DELETE', Endpoints::DLQ_MESSAGES . "/{$jobId}{$query}");
+    }
+
+    // =========================================================================
     // ADMIN OPERATIONS
     // =========================================================================
 

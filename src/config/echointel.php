@@ -11,7 +11,7 @@ return [
     | The base URL for the EchoIntel AI API.
     |
     */
-    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.live'),
+    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.dev'),
 
     /*
     |--------------------------------------------------------------------------
