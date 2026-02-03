@@ -16,8 +16,12 @@ class EchoIntelServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton('echointel', function ($app) {
+            $baseUrl = config('echointel.sandbox')
+                ? config('echointel.sandbox_api_url')
+                : config('echointel.api_url');
+
             return new EchoIntelClient([
-                'base_url' => config('echointel.api_url'),
+                'base_url' => $baseUrl,
                 'customer_api_id' => config('echointel.customer_api_id'),
                 'secret' => config('echointel.secret'),
                 'admin_secret' => config('echointel.admin_secret'),

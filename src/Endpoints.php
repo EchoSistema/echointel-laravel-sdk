@@ -6,7 +6,8 @@ namespace EchoIntel;
 
 class Endpoints
 {
-    public const BASE_URL = 'https://ai.echosistema.dev';
+    public const BASE_URL = 'https://ai.echosistema.live';
+    public const SANDBOX_URL = 'https://ai.echosistema.dev';
 
     // System
     public const HEALTH = '/health';

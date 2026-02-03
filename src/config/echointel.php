@@ -5,13 +5,36 @@ declare(strict_types=1);
 return [
     /*
     |--------------------------------------------------------------------------
-    | EchoIntel API URL
+    | Sandbox Mode
     |--------------------------------------------------------------------------
     |
-    | The base URL for the EchoIntel AI API.
+    | When enabled, all API requests will be sent to the sandbox environment
+    | instead of production. Set ECHOINTEL_SANDBOX=true in your .env file
+    | to activate sandbox mode. Defaults to true (sandbox).
+    | Set ECHOINTEL_SANDBOX=false to use production.
     |
     */
-    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.dev'),
+    'sandbox' => filter_var(env('ECHOINTEL_SANDBOX', true), FILTER_VALIDATE_BOOLEAN),
+
+    /*
+    |--------------------------------------------------------------------------
+    | EchoIntel API URL (Production)
+    |--------------------------------------------------------------------------
+    |
+    | The base URL for the EchoIntel AI API in production.
+    |
+    */
+    'api_url' => env('ECHOINTEL_API_URL', 'https://ai.echosistema.live'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | EchoIntel Sandbox API URL
+    |--------------------------------------------------------------------------
+    |
+    | The base URL for the EchoIntel AI API in sandbox/development mode.
+    |
+    */
+    'sandbox_api_url' => env('ECHOINTEL_SANDBOX_API_URL', 'https://ai.echosistema.dev'),
 
     /*
     |--------------------------------------------------------------------------
